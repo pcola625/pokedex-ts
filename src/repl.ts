@@ -14,8 +14,11 @@ export function startREPL(state: State): void {
       		state.readline.prompt();
       		return;
     		}
-
+        let argv: string = ""
     	const commandName = words[0];
+        if (words.length > 1) {
+            argv = words[1]
+        }
 
     	const cmd = state.commands[commandName];
     	if (!cmd) {
@@ -27,7 +30,12 @@ export function startREPL(state: State): void {
     	}
 
     try {
-      await cmd.callback(state);
+        if (words.length == 0) {
+            await cmd.callback(state);
+        } else {
+            await cmd.callback(state, argv);
+        }
+      
     } catch (e) {
       console.log(e);
     }
