@@ -1,11 +1,21 @@
-import {State} from "./state.js";
+import {CLICommand} from "./state.js";
+import {Interface} from "readline";
+import {PokeAPI} from "./pokeapi";
+import {Pokemon} from "./pokemon";
 
 export function cleanInput(input:string): string[] {
 	let output: string[] = input.replace(/\s+/g, " ").toLowerCase().trim().split(" ");
 	return output;
 }
 
-export function startREPL(state: State): void {
+export function startREPL(state: {
+    readline: Interface;
+    commands: Record<string, CLICommand>;
+    pokeAPI: PokeAPI;
+    nextLocationsUrl: string;
+    prevLocationsUrl: string;
+    myPokedex: Record<string, Pokemon>[];
+}): void {
     state.readline.prompt();
 
     state.readline.on("line", async (input) => {
