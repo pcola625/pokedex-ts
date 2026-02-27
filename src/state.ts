@@ -9,11 +9,11 @@ import { Pokemon } from "./pokemon.js";
 
 export type State = {
 	readline: Interface;
-        commands: Record<string, CLICommand>;
+    commands: Record<string, CLICommand>;
 	pokeAPI: PokeAPI;
 	nextLocationsUrl: string;
 	prevLocationsUrl: string;
-    myPokedex: Record<string, Pokemon>[];
+    myPokedex: Record<string, Pokemon>;
 };
  	
 export type CLICommand = {
@@ -35,6 +35,6 @@ export function initState(cacheInterval: number) {
     pokeAPI: new PokeAPI(cacheInterval),
     nextLocationsUrl: "",
     prevLocationsUrl: "",
-    myPokedex: [],
+    myPokedex: {},
   };
 }

@@ -15,17 +15,17 @@ export async function commandCatch(state: State, pokeman: string) {
         console.log(`Throwing a Pokeball at ${pokeman}...`);
         // do some random stuff
         const diceroll:number= Math.random();
-        console.log(`my random value is ${diceroll}`);
+       // console.log(`my random value is ${diceroll}`);
 
         // using pokemons base experience?
         const assume_denominator: number = 200;
-        console.log(`${pokeman} has base experience of ${lePokeMon.base_experience}.`);
+        //console.log(`${pokeman} has base experience of ${lePokeMon.base_experience}.`);
         const someCalcuation = diceroll > lePokeMon.base_experience/assume_denominator;
         if (!someCalcuation) {
             console.log(`${pokeman} escaped!`);
             return;
         } else {
-            state.myPokedex.push({pokeman: lePokeMon});
+            state.myPokedex[pokeman] =  lePokeMon;
             console.log(`${pokeman} was caught! Great jorb...`);
         }
         
